@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<body>
+<video id="v" autoplay muted playsinline style="display:none">
+  <source src="SUARA-KAMU.mp3" type="audio/mpeg">
+</video>
+
+<script>
+setTimeout(() => {
+  const v = document.getElementById("v");
+  v.muted = false;
+  v.play();
+}, 800);
+</script>
+
+</body>
+</html>
