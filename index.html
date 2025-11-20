@@ -124,24 +124,26 @@
   </div>
 
   <audio id="audio"
-    src="https://cdn.discordapp.com/attachments/1224132178804473866/1440975409150951546/desah-made-with-Voicemod.mp3"
+    src="https://files.catbox.moe/ilsmpu.mp3"
     preload="auto"></audio>
 
   <script>
     const audio = document.getElementById("audio");
     const hint = document.querySelector(".hint");
+    const downloadBtn = document.querySelector(".download-btn");
 
-    window.addEventListener("load", async () => {
-      try {
-        await audio.play();
+    // Tambahkan event klik di body untuk memulai audio
+    document.body.addEventListener("click", () => {
+      audio.play().then(() => {
         hint.textContent = "File berhasil dimuat.";
-      } catch {
-        hint.textContent = "Klik halaman agar file dapat diputar.";
-      }
-    });
+      }).catch(() => {
+        hint.textContent = "Audio gagal diputar, coba klik tombol download.";
+      });
+    }, { once: true }); // Hanya sekali, setelah klik pertama
 
-    document.querySelector(".download-btn").addEventListener("click", () => {
+    downloadBtn.addEventListener("click", () => {
       hint.textContent = "Mengunduh...";
+      audio.play().catch(() => {}); // play juga saat klik download
       setTimeout(() => hint.textContent = "Download gagal. Coba lagi nanti.", 1500);
     });
   </script>
